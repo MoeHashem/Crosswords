@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,10 +22,13 @@ jobs:
       - name: Run generate_index.py
         run: python generate_index.py
 
-      - name: Commit updated index.html
+      - name: Commit and push changes
+        env:
+          PAT: ${{ secrets.PAT }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "auto-updater"
+          git config --global user.email "auto-updater@example.com"
           git add index.html
           git commit -m "Auto-update index.html" || echo "No changes to commit"
-          git push
+          git remote set-url origin https://x-access-token:${PAT}@github.com/${{ github.repository }}
+          git push origin HEAD:main
