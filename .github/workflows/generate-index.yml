@@ -28,8 +28,9 @@ jobs:
         run: |
           git config --global user.name "auto-updater"
           git config --global user.email "auto-updater@example.com"
+          git remote set-url origin https://x-access-token:${PAT}@github.com/${{ github.repository }}
           git add index.html
           git commit -m "Auto-update index.html" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${PAT}@github.com/${{ github.repository }}
           git push origin HEAD:main
 
+  
