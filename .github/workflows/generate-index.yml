@@ -32,3 +32,4 @@ jobs:
           git commit -m "Auto-update index.html" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${PAT}@github.com/${{ github.repository }}
           git push origin HEAD:main
+
