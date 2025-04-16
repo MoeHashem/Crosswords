@@ -79,7 +79,7 @@ with open(OUTPUT_FILE, "w") as f:
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
 
         f.write(f"""    <a href="{puzzle_path}" class="card">
-      <img src="{icon_path}" alt="{name} icon">
+      <img src="{icon_path}" alt="{icon_path} icon">
       <p>{name}</p>
     </a>
 """)
