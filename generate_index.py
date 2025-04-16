@@ -1,7 +1,7 @@
 import os
 
 PUZZLE_FOLDER = "Puzzles"
-ICON_SUFFIX = "_icon.PNG"
+ICON_FOLDER = "Icons"
 OUTPUT_FILE = "index.html"
 
 puzzle_files = sorted([f for f in os.listdir(PUZZLE_FOLDER) if f.endswith(".html")])
@@ -74,10 +74,10 @@ with open(OUTPUT_FILE, "w") as f:
 
     for file in puzzle_files:
         name = os.path.splitext(file)[0]
-        icon = f"{name}_icon.PNG"
-        path = f"{PUZZLE_FOLDER}/{file}"
-        f.write(f"""    <a href="{path}" class="card">
-      <img src="{icon}" alt="{name} icon">
+        icon_path = f"{ICON_FOLDER}/{name}_icon.PNG"
+        puzzle_path = f"{PUZZLE_FOLDER}/{file}"
+        f.write(f"""    <a href="{puzzle_path}" class="card">
+      <img src="{icon_path}" alt="{name} icon">
       <p>{name}</p>
     </a>
 """)
