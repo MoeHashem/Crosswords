@@ -10,55 +10,79 @@ with open(OUTPUT_FILE, "w") as f:
     f.write("""<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All My Crossword Puzzles</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .puzzle-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .puzzle-item {
-            margin: 10px;
-            width: 150px;
-        }
-        .puzzle-item a {
-            text-decoration: none;
-            color: black;
-            display: block;
-            text-align: center;
-        }
-        .puzzle-item img {
-            width: 100%;
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossword Collection</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      text-align: center;
+      padding: 15px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .card p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
 </head>
 <body>
-    <h1>All My Crossword Puzzles</h1>
-    <div class="puzzle-list">
+  <header>
+    <h1>My Crossword Collection</h1>
+  </header>
+  <div class="grid">
 """)
 
     for file in puzzle_files:
         name = os.path.splitext(file)[0]
         icon = f"{name}_icon.PNG"
         path = f"{PUZZLE_FOLDER}/{file}"
-        f.write(f"""        <div class="puzzle-item">
-            <a href="{path}">
-                <img src="{icon}" alt="{name}">
-                <p>{name}</p>
-            </a>
-        </div>
+        f.write(f"""    <a href="{path}" class="card">
+      <img src="{icon}" alt="{name} icon">
+      <p>{name}</p>
+    </a>
 """)
 
-    f.write("""    </div>
+    f.write("""  </div>
 </body>
-</html>""")
+</html>
+""")
