@@ -73,8 +73,9 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     for file in puzzle_files:
-        name = os.path.splitext(file)[0]
-        icon_path = f"{ICON_FOLDER}/{name}_icon.PNG"
+        name = os.path.splitext(file)[0]              # e.g., "CW1 - Humblex"
+        cw_number = name.split(" - ")[0]              # e.g., "CW1"
+        icon_path = f"{ICON_FOLDER}/{cw_number}_icon.PNG"
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
         f.write(f"""    <a href="{puzzle_path}" class="card">
       <img src="{icon_path}" alt="{name} icon">
