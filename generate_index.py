@@ -73,9 +73,7 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     for file in puzzle_files:
-        name_full = os.path.splitext(file)[0]
-        parts = name_full.split(" - ")
-        name = parts[0] if parts else name_full
+        name = os.path.splitext(file)[0]
         icon_path = f"{ICON_FOLDER}/{name}_icon.PNG"
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
         f.write(f"""    <a href="{puzzle_path}" class="card">
