@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle HTML Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            max-width: 700px;
+            margin: auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 16px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧩 Crossword Puzzle HTML Generator</h1>
+    <label for="puzzleNum">Puzzle Number (e.g., CW3):</label>
+    <input type="text" id="puzzleNum" placeholder="CW3">
+
+    <label for="title">Custom Title:</label>
+    <input type="text" id="title" placeholder="Movie Quotes">
+
+    <label for="iframeSrc">PuzzleMe Embed URL:</label>
+    <textarea id="iframeSrc" rows="3" placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=...&embed=1"></textarea>
+
+    <button onclick="generate()">Generate HTML</button>
+
+    <h2>Generated HTML:</h2>
+    <pre id="output"></pre>
+
+    <script>
+        function generate() {
+            const puzzleNum = document.getElementById("puzzleNum").value.trim();
+            const title = document.getElementById("title").value.trim();
+            const iframeSrc = document.getElementById("iframeSrc").value.trim();
+
+            const fullTitle = `${puzzleNum} – ${title}`;
+
+            const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${fullTitle}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      text-align: center;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 700px;
+      max-width: 900px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>${fullTitle}</h1>
+  <iframe 
+    src="${iframeSrc}" 
+    allow="web-share; fullscreen"
+    aria-label="Puzzle Me Game">
+  </iframe>
+</body>
+</html>`;
+
+            document.getElementById("output").textContent = html;
+        }
+    </script>
+</body>
+</html>
