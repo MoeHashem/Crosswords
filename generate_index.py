@@ -44,29 +44,30 @@ with open(OUTPUT_FILE, "w") as f:
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.2s;
       text-align: center;
-      padding: 0;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
     }
     .card:hover {
       transform: translateY(-5px);
     }
-    .card img {
+    .icon-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
-      object-fit: cover;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-wrapper img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
     }
     .card p {
-      padding: 10px;
+      margin: 10px;
       font-weight: bold;
-      background-color: #f0f0f0;
-      margin: 0;
       color: #333;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
     }
   </style>
 </head>
@@ -84,7 +85,9 @@ with open(OUTPUT_FILE, "w") as f:
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
 
         f.write(f"""    <a href="{puzzle_path}" class="card">
-      <img src="{icon_path}" alt="{cw_number} icon">
+      <div class="icon-wrapper">
+        <img src="{icon_path}" alt="{cw_number} icon">
+      </div>
       <p>{name}</p>
     </a>
 """)
