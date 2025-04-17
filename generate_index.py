@@ -80,7 +80,7 @@ with open(OUTPUT_FILE, "w") as f:
 </head>
 <body>
   <header>
-    <h1>My Crossword Collection</h1>
+    <h1>Moe's Mighty Crossword Collection</h1>
   </header>
   <div class="grid">
 """)
