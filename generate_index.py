@@ -3,6 +3,7 @@ import os
 PUZZLE_FOLDER = "Puzzles"
 ICON_FOLDER = "Icons"
 OUTPUT_FILE = "index.html"
+DEFAULT_ICON = f"{ICON_FOLDER}/default_icon.png"
 
 puzzle_files = sorted([f for f in os.listdir(PUZZLE_FOLDER) if f.endswith(".html")])
 
@@ -44,9 +45,8 @@ with open(OUTPUT_FILE, "w") as f:
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.2s;
       text-align: center;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
+      padding: 15px;
+      position: relative;
     }
     .card:hover {
       transform: translateY(-5px);
@@ -54,20 +54,27 @@ with open(OUTPUT_FILE, "w") as f:
     .icon-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
-      background: white;
+      background: #fff;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 8px;
     }
     .icon-wrapper img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
+      background-color: white;
     }
     .card p {
-      margin: 10px;
+      margin-top: 10px;
       font-weight: bold;
       color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
   </style>
 </head>
@@ -79,14 +86,19 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     for file in puzzle_files:
-        name = os.path.splitext(file)[0]
-        cw_number = name.split("-")[0].strip()
-        icon_path = f"{ICON_FOLDER}/{cw_number}_icon.png"
+        name = os.path.splitext(file)[0]  # e.g., "CW1 - Humblex"
+        cw_number = name.split("-")[0].strip()  # Gets "CW1"
+        icon_file = f"{cw_number}_icon.png"
+        icon_path = f"{ICON_FOLDER}/{icon_file}"
+
+        if not os.path.exists(icon_path):
+            icon_path = DEFAULT_ICON
+
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
 
         f.write(f"""    <a href="{puzzle_path}" class="card">
       <div class="icon-wrapper">
-        <img src="{icon_path}" alt="{cw_number} icon">
+        <img src="{icon_path}" alt="{name} icon">
       </div>
       <p>{name}</p>
     </a>
