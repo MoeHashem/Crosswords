@@ -35,29 +35,30 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.2s;
       text-align: center;
-      padding: 0;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
     }
     .card:hover {
       transform: translateY(-5px);
     }
-    .card img {
+    .icon-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
-      object-fit: cover;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-wrapper img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
     }
     .card p {
-      padding: 10px;
+      margin: 10px;
       font-weight: bold;
-      background-color: #f0f0f0;
-      margin: 0;
       color: #333;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
     }
   </style>
 </head>
@@ -67,19 +68,27 @@
   </header>
   <div class="grid">
     <a href="Puzzles/CW1.html" class="card">
-      <img src="Icons/CW1_icon.png" alt="CW1 icon">
+      <div class="icon-wrapper">
+        <img src="Icons/CW1_icon.png" alt="CW1 icon">
+      </div>
       <p>CW1</p>
     </a>
     <a href="Puzzles/CW2.html" class="card">
-      <img src="Icons/CW2_icon.png" alt="CW2 icon">
+      <div class="icon-wrapper">
+        <img src="Icons/CW2_icon.png" alt="CW2 icon">
+      </div>
       <p>CW2</p>
     </a>
     <a href="Puzzles/test.html" class="card">
-      <img src="Icons/test_icon.png" alt="test icon">
+      <div class="icon-wrapper">
+        <img src="Icons/test_icon.png" alt="test icon">
+      </div>
       <p>test</p>
     </a>
     <a href="Puzzles/test3.html" class="card">
-      <img src="Icons/test3_icon.png" alt="test3 icon">
+      <div class="icon-wrapper">
+        <img src="Icons/test3_icon.png" alt="test3 icon">
+      </div>
       <p>test3</p>
     </a>
   </div>
