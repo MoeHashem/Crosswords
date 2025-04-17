@@ -44,19 +44,24 @@ with open(OUTPUT_FILE, "w") as f:
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.2s;
       text-align: center;
-      padding: 15px;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .card:hover {
       transform: translateY(-5px);
     }
     .card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
     }
     .card p {
-      margin-top: 10px;
+      padding: 10px;
       font-weight: bold;
+      background-color: #f0f0f0;
+      margin: 0;
       color: #333;
     }
     a {
@@ -73,13 +78,13 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     for file in puzzle_files:
-        name = os.path.splitext(file)[0]              # e.g., "CW1 - Humblex"
-        cw_number = name.split("-")[0].strip()      # Add .strip() to remove extra spaces
+        name = os.path.splitext(file)[0]
+        cw_number = name.split("-")[0].strip()
         icon_path = f"{ICON_FOLDER}/{cw_number}_icon.png"
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
 
         f.write(f"""    <a href="{puzzle_path}" class="card">
-      <img src="{icon_path}" alt="{icon_path} icon">
+      <img src="{icon_path}" alt="{cw_number} icon">
       <p>{name}</p>
     </a>
 """)
