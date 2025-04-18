@@ -122,28 +122,28 @@ with open(OUTPUT_FILE, "w") as f:
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
   <script>
-  function pickRandomPuzzle() {
-    // Select all the <a> tags that are inside the .card class
-    const puzzles = document.querySelectorAll('.card a');
-    
-    // If there are no puzzles, return
-    if (puzzles.length === 0) {
-      alert("No puzzles found!");
-      return;
-    }
+    function pickRandomPuzzle() {
+      // Select all the <a> tags that are inside the .card class
+      const puzzles = document.querySelectorAll('.card a');
+      
+      // If there are no puzzles, return
+      if (puzzles.length === 0) {
+        alert("No puzzles found!");
+        return;
+      }
 
-    // Pick a random puzzle by selecting a random index
-    const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      // Pick a random puzzle by selecting a random index
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
 
-    // Check if the randomPuzzle is valid
-    if (randomPuzzle && randomPuzzle.href) {
-      // Redirect to the selected puzzle's href URL
-      window.location.href = randomPuzzle.href;
-    } else {
-      alert("Invalid puzzle link!");
+      // Check if the randomPuzzle is valid
+      if (randomPuzzle && randomPuzzle.href) {
+        // Redirect to the selected puzzle's href URL
+        window.location.href = randomPuzzle.href;
+      } else {
+        alert("Invalid puzzle link!");
+      }
     }
-  }
-</script>
+  </script>
 </body>
 </html>
 """)
