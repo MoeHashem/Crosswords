@@ -76,6 +76,18 @@ with open(OUTPUT_FILE, "w") as f:
       text-decoration: none;
       color: inherit;
     }
+    /* Floating button styles */
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -105,6 +117,17 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     f.write("""  </div>
+
+  <!-- Floating button to pick random puzzle -->
+  <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
+
+  <script>
+    function pickRandomPuzzle() {
+      const puzzles = document.querySelectorAll('.card');
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      window.location.href = randomPuzzle.querySelector('a').href;
+    }
+  </script>
 </body>
 </html>
 """)
