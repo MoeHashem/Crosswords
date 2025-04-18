@@ -146,23 +146,28 @@
 
   <script>
     function pickRandomPuzzle() {
-      // Select all the .card elements (since each <a> tag has class="card")
+      // Select all the .card elements
       const puzzles = document.querySelectorAll('.card');
-      
-      // If there are no puzzles, return
+
+      // If there are no puzzles, log to console and return
       if (puzzles.length === 0) {
+        console.log("No puzzles found!");  // This will show in the browser's console
         alert("No puzzles found!");
         return;
       }
-    
+
       // Pick a random puzzle by selecting a random index
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-    
+
+      // Log the selected random puzzle
+      console.log("Selected Puzzle: ", randomPuzzle);
+
       // Get the href attribute of the <a> tag inside the .card
       const randomPuzzleUrl = randomPuzzle.querySelector('a').getAttribute('href');
-    
+
       // Check if the randomPuzzleUrl is valid
       if (randomPuzzleUrl) {
+        console.log("Redirecting to:", randomPuzzleUrl);
         // Redirect to the selected puzzle's href URL
         window.location.href = randomPuzzleUrl;
       } else {
@@ -170,5 +175,6 @@
       }
     }
   </script>
+
 </body>
 </html>
