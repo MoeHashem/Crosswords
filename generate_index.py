@@ -123,9 +123,14 @@ with open(OUTPUT_FILE, "w") as f:
 
   <script>
     function pickRandomPuzzle() {
-      const puzzles = document.querySelectorAll('.card');
+      // Get all links with the class "card" (which are the puzzle links)
+      const puzzles = document.querySelectorAll('.card a');
+      
+      // Pick a random puzzle
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-      window.location.href = randomPuzzle.querySelector('a').href;
+      
+      // Redirect to the selected puzzle's URL
+      window.location.href = randomPuzzle.href;
     }
   </script>
 </body>
