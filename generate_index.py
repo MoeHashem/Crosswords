@@ -122,36 +122,26 @@ with open(OUTPUT_FILE, "w") as f:
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
   <script>
-    function pickRandomPuzzle() {
-      // Select all the .card elements
-      const puzzles = document.querySelectorAll('.card');
+  function pickRandomPuzzle() {
+    const puzzles = document.querySelectorAll('.grid a.card');
 
-      // If there are no puzzles, log to console and return
-      if (puzzles.length === 0) {
-        console.log("No puzzles found!");  // This will show in the browser's console
-        alert("No puzzles found!");
-        return;
-      }
-
-      // Pick a random puzzle by selecting a random index
-      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-
-      // Log the selected random puzzle
-      console.log("Selected Puzzle: ", randomPuzzle);
-
-      // Get the href attribute of the <a> tag inside the .card
-      const randomPuzzleUrl = randomPuzzle.querySelector('a').getAttribute('href');
-
-      // Check if the randomPuzzleUrl is valid
-      if (randomPuzzleUrl) {
-        console.log("Redirecting to:", randomPuzzleUrl);
-        // Redirect to the selected puzzle's href URL
-        window.location.href = randomPuzzleUrl;
-      } else {
-        alert("Invalid puzzle link!");
-      }
+    if (puzzles.length === 0) {
+      console.log("No puzzles found!");
+      alert("No puzzles found!");
+      return;
     }
-  </script>
+
+    const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+    const randomPuzzleUrl = randomPuzzle.getAttribute('href');
+
+    console.log("Redirecting to:", randomPuzzleUrl);
+    if (randomPuzzleUrl) {
+      window.location.href = randomPuzzleUrl;
+    } else {
+      alert("Invalid puzzle link!");
+    }
+  }
+</script>
 
 </body>
 </html>
