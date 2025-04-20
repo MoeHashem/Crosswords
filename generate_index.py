@@ -135,7 +135,7 @@ with open(OUTPUT_FILE, "w") as f:
       </a>
 """)
 
-        f.write("""    </div> <!-- .grid -->
+    f.write("""    </div> <!-- .grid -->
     <div class="ad" id="ad-slot">
       <!-- Ad will be inserted here by JS -->
     </div>
@@ -171,7 +171,7 @@ with open(OUTPUT_FILE, "w") as f:
       const randomAd = ads[Math.floor(Math.random() * ads.length)];
       const adHTML = `
         <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-          <img src="\${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+          <img src="${{randomAd}}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
         </a>`;
       document.getElementById('ad-slot').innerHTML = adHTML;
     }}
