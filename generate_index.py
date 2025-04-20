@@ -56,6 +56,7 @@ with open(OUTPUT_FILE, "w") as f:
       width: 200px;
       max-width: 90vw;
       flex-shrink: 0;
+      margin-top: 20px;
     }}
     .card {{
       background: white;
@@ -136,13 +137,15 @@ with open(OUTPUT_FILE, "w") as f:
 """)
 
     f.write("""    </div> <!-- .grid -->
-    <div class="ad" id="ad-slot">
-      <!-- Ad will be inserted here by JS -->
-    </div>
   </div> <!-- .container -->
 
   <!-- Floating button to pick random puzzle -->
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
+
+  <!-- Ad Slot -->
+  <div class="ad" id="ad-slot">
+    <!-- Ad will be inserted here by JS -->
+  </div>
 
   <script>
     function pickRandomPuzzle() {
@@ -155,7 +158,10 @@ with open(OUTPUT_FILE, "w") as f:
       window.location.href = randomPuzzle.getAttribute('href');
     }
 
-    // Ad rotation logic
+    window.onload = function() {{
+      // Ad rotation logic
+
+      const ads = [
 """)
 
     # Step 1: Get all ad images
@@ -163,9 +169,9 @@ with open(OUTPUT_FILE, "w") as f:
     js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
 
     f.write(f"""
-    const ads = [
       {js_ad_array}
     ];
+
 
     if (ads.length > 0) {{
       const randomAd = ads[Math.floor(Math.random() * ads.length)];
@@ -175,6 +181,7 @@ with open(OUTPUT_FILE, "w") as f:
         </a>`;
       document.getElementById('ad-slot').innerHTML = adHTML;
     }}
+    }};
   </script>
 </body>
 </html>
