@@ -183,11 +183,8 @@
         <p>CW14</p>
       </a>
     </div> <!-- .grid -->
-
-    <div class="ad">
-      <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-        <img src="Ads/Rent_a_grandma.png" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
-      </a>
+    <div class="ad" id="ad-slot">
+      <!-- Ad will be inserted here by JS -->
     </div>
   </div> <!-- .container -->
 
@@ -195,25 +192,31 @@
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
   <script>
-  function pickRandomPuzzle() {
-    const puzzles = document.querySelectorAll('.grid a.card');
-
-    if (puzzles.length === 0) {
-      console.log("No puzzles found!");
-      alert("No puzzles found!");
-      return;
+    function pickRandomPuzzle() {
+      const puzzles = document.querySelectorAll('.grid a.card');
+      if (puzzles.length === 0) {
+        alert("No puzzles found!");
+        return;
+      }
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      window.location.href = randomPuzzle.getAttribute('href');
     }
 
-    const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-    const randomPuzzleUrl = randomPuzzle.getAttribute('href');
+    // Ad rotation logic
 
-    console.log("Redirecting to:", randomPuzzleUrl);
-    if (randomPuzzleUrl) {
-      window.location.href = randomPuzzleUrl;
-    } else {
-      alert("Invalid puzzle link!");
+    const ads = [
+      "Ads/CW_TP.png",
+      "Ads/Rent_a_grandma.png"
+    ];
+
+    if (ads.length > 0) {
+      const randomAd = ads[Math.floor(Math.random() * ads.length)];
+      const adHTML = `
+        <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
+          <img src="${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+        </a>`;
+      document.getElementById('ad-slot').innerHTML = adHTML;
     }
-  }
   </script>
 </body>
 </html>
