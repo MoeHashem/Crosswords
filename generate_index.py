@@ -1,45 +1,63 @@
 import os
+import random
 
 PUZZLE_FOLDER = "Puzzles"
 ICON_FOLDER = "Icons"
+AD_FOLDER = "Ads"
 OUTPUT_FILE = "index.html"
 DEFAULT_ICON = f"{ICON_FOLDER}/default_icon.png"
 
 puzzle_files = sorted([f for f in os.listdir(PUZZLE_FOLDER) if f.endswith(".html")])
 
+# Pick a random ad from the Ads folder
+ad_images = [f for f in os.listdir(AD_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+random_ad = random.choice(ad_images) if ad_images else None
+
 with open(OUTPUT_FILE, "w") as f:
-    f.write("""<!DOCTYPE html>
+    f.write(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crossword Collection</title>
   <style>
-    body {
+    body {{
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
       background: #f9f9f9;
-    }
-    header {
+    }}
+    header {{
       background-color: #333;
       color: #fff;
       padding: 20px;
       text-align: center;
-    }
-    h1 {
+    }}
+    h1 {{
       margin: 0;
       font-size: 2em;
-    }
-    .grid {
+    }}
+    .container {{
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }}
+    .grid {{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
-      padding: 30px;
       max-width: 1000px;
-      margin: auto;
-    }
-    .card {
+      flex: 1 1 600px;
+    }}
+    .ad {{
+      width: 200px;
+      max-width: 90vw;
+      flex-shrink: 0;
+    }}
+    .card {{
       background: white;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -47,11 +65,11 @@ with open(OUTPUT_FILE, "w") as f:
       text-align: center;
       padding: 15px;
       position: relative;
-    }
-    .card:hover {
+    }}
+    .card:hover {{
       transform: translateY(-5px);
-    }
-    .icon-wrapper {
+    }}
+    .icon-wrapper {{
       width: 100%;
       aspect-ratio: 1 / 1;
       background: #fff;
@@ -60,24 +78,23 @@ with open(OUTPUT_FILE, "w") as f:
       align-items: center;
       overflow: hidden;
       border-radius: 8px;
-    }
-    .icon-wrapper img {
+    }}
+    .icon-wrapper img {{
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       background-color: white;
-    }
-    .card p {
+    }}
+    .card p {{
       margin-top: 10px;
       font-weight: bold;
       color: #333;
-    }
-    a {
+    }}
+    a {{
       text-decoration: none;
       color: inherit;
-    }
-    /* Floating button styles */
-    .floating-btn {
+    }}
+    .floating-btn {{
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -87,19 +104,21 @@ with open(OUTPUT_FILE, "w") as f:
       border-radius: 50px;
       cursor: pointer;
       font-size: 1rem;
-    }
+    }}
   </style>
 </head>
 <body>
   <header>
     <h1>Moe's Mighty Crossword Collection</h1>
   </header>
-  <div class="grid">
+
+  <div class="container">
+    <div class="grid">
 """)
 
     for file in puzzle_files:
         name = os.path.splitext(file)[0]  # e.g., "CW1 - Humblex"
-        cw_number = name.split("-")[0].strip()  # Gets "CW1"
+        cw_number = name.split("-")[0].strip()
         icon_file = f"{cw_number}_icon.png"
         icon_path = f"{ICON_FOLDER}/{icon_file}"
 
@@ -108,15 +127,29 @@ with open(OUTPUT_FILE, "w") as f:
 
         puzzle_path = f"{PUZZLE_FOLDER}/{file}"
 
-        f.write(f"""    <a href="{puzzle_path}" class="card">
-      <div class="icon-wrapper">
-        <img src="{icon_path}" alt="{name} icon">
-      </div>
-      <p>{name}</p>
-    </a>
+        f.write(f"""      <a href="{puzzle_path}" class="card">
+        <div class="icon-wrapper">
+          <img src="{icon_path}" alt="{name} icon">
+        </div>
+        <p>{name}</p>
+      </a>
 """)
 
-    f.write("""  </div>
+    f.write("""    </div> <!-- .grid -->
+
+""")
+
+    # If we have a valid ad, add the right-side ad HTML
+    if random_ad:
+        ad_path = f"{AD_FOLDER}/{random_ad}"
+        f.write(f"""    <div class="ad">
+      <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
+        <img src="{ad_path}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+      </a>
+    </div>
+""")
+
+    f.write("""  </div> <!-- .container -->
 
   <!-- Floating button to pick random puzzle -->
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
@@ -141,8 +174,7 @@ with open(OUTPUT_FILE, "w") as f:
       alert("Invalid puzzle link!");
     }
   }
-</script>
-
+  </script>
 </body>
 </html>
 """)
