@@ -195,15 +195,15 @@
   </div>
 
   <script>
-    function pickRandomPuzzle() {{
+    function pickRandomPuzzle() {
       const puzzles = document.querySelectorAll('.grid a.card');
-      if (puzzles.length === 0) {{
+      if (puzzles.length === 0) {
         alert("No puzzles found!");
         return;
-      }}
+      }
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
       window.location.href = randomPuzzle.getAttribute('href');
-    }}
+    }
 
     window.onload = function() {{
       console.log('Page loaded');
