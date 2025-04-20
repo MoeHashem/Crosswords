@@ -11,9 +11,9 @@ puzzle_files = sorted([f for f in os.listdir(PUZZLE_FOLDER) if f.endswith(".html
 
 # Pick a random ad from the Ads folder
 ad_images = [f for f in os.listdir(AD_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-random_ad = random.choice(ad_images) if ad_images else None
 
 with open(OUTPUT_FILE, "w") as f:
+    # --- Start of HTML ---
     f.write(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,6 +117,7 @@ with open(OUTPUT_FILE, "w") as f:
     <div class="grid">
 """)
 
+    # --- Puzzle grid cards ---
     for file in puzzle_files:
         name = os.path.splitext(file)[0]  # e.g., "CW1 - Humblex"
         cw_number = name.split("-")[0].strip()
@@ -136,6 +137,7 @@ with open(OUTPUT_FILE, "w") as f:
       </a>
 """)
 
+    # --- Ad slot and floating button ---
     f.write("""    </div> <!-- .grid -->
   </div> <!-- .container -->
 
@@ -158,35 +160,32 @@ with open(OUTPUT_FILE, "w") as f:
       window.location.href = randomPuzzle.getAttribute('href');
     }
 
-    window.onload = function() {{
+    window.onload = function() {
       console.log('Page loaded');
-      
-      // Ad rotation logic
-      const ads = [
 """)
 
-    # Step 1: Get all ad images
-    ad_images = [f for f in os.listdir(AD_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-    
-    if ad_images:
-        js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
-        f.write(f"""
-      {js_ad_array}
-    ];
+    # --- Write JS ad array using Python ---
+    js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
+    f.write(f"""
+      const ads = [
+        {js_ad_array}
+      ];
+""")
 
-
-    if (ads.length > 0) {{
-      console.log('Random ad selected');
-      const randomAd = ads[Math.floor(Math.random() * ads.length)];
-      const adHTML = `
-        <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-          <img src="${{randomAd}}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
-        </a>`;
-      document.getElementById('ad-slot').innerHTML = adHTML;
-    }} else {{
-      console.log('No ads found');
-    }}
-    }};  // End of window.onload function
+    # --- Static JS for ad display ---
+    f.write("""
+      if (ads.length > 0) {
+        console.log('Random ad selected');
+        const randomAd = ads[Math.floor(Math.random() * ads.length)];
+        const adHTML = `
+          <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
+            <img src="${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+          </a>`;
+        document.getElementById('ad-slot').innerHTML = adHTML;
+      } else {
+        console.log('No ads found');
+      }
+    };  // End of window.onload
   </script>
 </body>
 </html>
