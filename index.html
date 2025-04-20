@@ -21,20 +21,13 @@
       margin: 0;
       font-size: 2em;
     }
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
+      padding: 30px;
       max-width: 1000px;
-      flex: 1 1 600px;
+      margin: auto;
     }
     .card {
       background: white;
@@ -73,6 +66,7 @@
       text-decoration: none;
       color: inherit;
     }
+    /* Floating button styles */
     .floating-btn {
       position: fixed;
       bottom: 20px;
@@ -84,141 +78,123 @@
       cursor: pointer;
       font-size: 1rem;
     }
-
-    /* Ad Container */
-    .ad {
-      position: fixed;
-      top: 20px;
-      right: 0;
-      width: 200px;
-      max-width: 90vw;
-      height: auto;
-      min-height: 200px; /* Minimum height */
-      border: 2px dashed #ccc; /* Optional border for visibility */
-      background-color: #f4f4f4;
-      padding: 10px;
-      z-index: 9999; /* Ensure it's above other content */
-    }
-    .ad img {
-      width: 100%;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Moe's Mighty Crossword Collection</h1>
   </header>
-
-  <div class="container">
-    <div class="grid">
-      <a href="Puzzles/CW01.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW01_icon.png" alt="CW01 icon">
-        </div>
-        <p>CW01</p>
-      </a>
-      <a href="Puzzles/CW02.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW02_icon.png" alt="CW02 icon">
-        </div>
-        <p>CW02</p>
-      </a>
-      <a href="Puzzles/CW03.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW03_icon.png" alt="CW03 icon">
-        </div>
-        <p>CW03</p>
-      </a>
-      <a href="Puzzles/CW04.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW04_icon.png" alt="CW04 icon">
-        </div>
-        <p>CW04</p>
-      </a>
-      <a href="Puzzles/CW05.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW05_icon.png" alt="CW05 icon">
-        </div>
-        <p>CW05</p>
-      </a>
-      <a href="Puzzles/CW06.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW06_icon.png" alt="CW06 icon">
-        </div>
-        <p>CW06</p>
-      </a>
-      <a href="Puzzles/CW07.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW07_icon.png" alt="CW07 icon">
-        </div>
-        <p>CW07</p>
-      </a>
-      <a href="Puzzles/CW08.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW08_icon.png" alt="CW08 icon">
-        </div>
-        <p>CW08</p>
-      </a>
-      <a href="Puzzles/CW09.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW09_icon.png" alt="CW09 icon">
-        </div>
-        <p>CW09</p>
-      </a>
-      <a href="Puzzles/CW10.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW10_icon.png" alt="CW10 icon">
-        </div>
-        <p>CW10</p>
-      </a>
-      <a href="Puzzles/CW11.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW11_icon.png" alt="CW11 icon">
-        </div>
-        <p>CW11</p>
-      </a>
-      <a href="Puzzles/CW12.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW12_icon.png" alt="CW12 icon">
-        </div>
-        <p>CW12</p>
-      </a>
-      <a href="Puzzles/CW13.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW13_icon.png" alt="CW13 icon">
-        </div>
-        <p>CW13</p>
-      </a>
-      <a href="Puzzles/CW14.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW14_icon.png" alt="CW14 icon">
-        </div>
-        <p>CW14</p>
-      </a>
-    </div>
+  <div class="grid">
+    <a href="Puzzles/CW01.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW01_icon.png" alt="CW01 icon">
+      </div>
+      <p>CW01</p>
+    </a>
+    <a href="Puzzles/CW02.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW02_icon.png" alt="CW02 icon">
+      </div>
+      <p>CW02</p>
+    </a>
+    <a href="Puzzles/CW03.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW03_icon.png" alt="CW03 icon">
+      </div>
+      <p>CW03</p>
+    </a>
+    <a href="Puzzles/CW04.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW04_icon.png" alt="CW04 icon">
+      </div>
+      <p>CW04</p>
+    </a>
+    <a href="Puzzles/CW05.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW05_icon.png" alt="CW05 icon">
+      </div>
+      <p>CW05</p>
+    </a>
+    <a href="Puzzles/CW06.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW06_icon.png" alt="CW06 icon">
+      </div>
+      <p>CW06</p>
+    </a>
+    <a href="Puzzles/CW07.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW07_icon.png" alt="CW07 icon">
+      </div>
+      <p>CW07</p>
+    </a>
+    <a href="Puzzles/CW08.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW08_icon.png" alt="CW08 icon">
+      </div>
+      <p>CW08</p>
+    </a>
+    <a href="Puzzles/CW09.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW09_icon.png" alt="CW09 icon">
+      </div>
+      <p>CW09</p>
+    </a>
+    <a href="Puzzles/CW10.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW10_icon.png" alt="CW10 icon">
+      </div>
+      <p>CW10</p>
+    </a>
+    <a href="Puzzles/CW11.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW11_icon.png" alt="CW11 icon">
+      </div>
+      <p>CW11</p>
+    </a>
+    <a href="Puzzles/CW12.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW12_icon.png" alt="CW12 icon">
+      </div>
+      <p>CW12</p>
+    </a>
+    <a href="Puzzles/CW13.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW13_icon.png" alt="CW13 icon">
+      </div>
+      <p>CW13</p>
+    </a>
+    <a href="Puzzles/CW14.html" class="card">
+      <div class="icon-wrapper">
+        <img src="Icons/CW14_icon.png" alt="CW14 icon">
+      </div>
+      <p>CW14</p>
+    </a>
   </div>
 
   <!-- Floating button to pick random puzzle -->
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
-  <!-- Ad Slot - always positioned on the right side -->
-  <div class="ad">
-    <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-      <img src="Ads/CW_TP.png" alt="Sponsored Ad">
-    </a>
-  </div>
-
   <script>
-    function pickRandomPuzzle() {
-      const puzzles = document.querySelectorAll('.grid a.card');
-      if (puzzles.length === 0) {
-        alert("No puzzles found!");
-        return;
-      }
-      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-      window.location.href = randomPuzzle.getAttribute('href');
+  function pickRandomPuzzle() {
+    const puzzles = document.querySelectorAll('.grid a.card');
+
+    if (puzzles.length === 0) {
+      console.log("No puzzles found!");
+      alert("No puzzles found!");
+      return;
     }
-  </script>
+
+    const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+    const randomPuzzleUrl = randomPuzzle.getAttribute('href');
+
+    console.log("Redirecting to:", randomPuzzleUrl);
+    if (randomPuzzleUrl) {
+      window.location.href = randomPuzzleUrl;
+    } else {
+      alert("Invalid puzzle link!");
+    }
+  }
+</script>
+
 </body>
 </html>
