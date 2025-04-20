@@ -37,16 +37,17 @@
       flex: 1 1 600px;
     }
     .ad {
-  width: 200px;
-  max-width: 90vw;
-  flex-shrink: 0;
-  margin-top: 20px;
-  min-height: 200px; /* NEW: ensures there's always space for the ad */
-  border: 2px dashed #ccc; /* Optional: helps you see if the ad container is rendering */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      width: 200px;
+      max-width: 90vw;
+      flex-shrink: 0;
+      margin-top: 20px;
+      min-height: 200px; /* Ensures there's space for the ad */
+      height: 300px; /* Set a fixed height to ensure visibility */
+      border: 2px dashed #ccc; /* Optional: helps you see if the ad container is rendering */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .card {
       background: white;
       border-radius: 10px;
@@ -110,84 +111,7 @@
         </div>
         <p>CW01</p>
       </a>
-      <a href="Puzzles/CW02.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW02_icon.png" alt="CW02 icon">
-        </div>
-        <p>CW02</p>
-      </a>
-      <a href="Puzzles/CW03.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW03_icon.png" alt="CW03 icon">
-        </div>
-        <p>CW03</p>
-      </a>
-      <a href="Puzzles/CW04.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW04_icon.png" alt="CW04 icon">
-        </div>
-        <p>CW04</p>
-      </a>
-      <a href="Puzzles/CW05.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW05_icon.png" alt="CW05 icon">
-        </div>
-        <p>CW05</p>
-      </a>
-      <a href="Puzzles/CW06.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW06_icon.png" alt="CW06 icon">
-        </div>
-        <p>CW06</p>
-      </a>
-      <a href="Puzzles/CW07.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW07_icon.png" alt="CW07 icon">
-        </div>
-        <p>CW07</p>
-      </a>
-      <a href="Puzzles/CW08.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW08_icon.png" alt="CW08 icon">
-        </div>
-        <p>CW08</p>
-      </a>
-      <a href="Puzzles/CW09.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW09_icon.png" alt="CW09 icon">
-        </div>
-        <p>CW09</p>
-      </a>
-      <a href="Puzzles/CW10.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW10_icon.png" alt="CW10 icon">
-        </div>
-        <p>CW10</p>
-      </a>
-      <a href="Puzzles/CW11.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW11_icon.png" alt="CW11 icon">
-        </div>
-        <p>CW11</p>
-      </a>
-      <a href="Puzzles/CW12.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW12_icon.png" alt="CW12 icon">
-        </div>
-        <p>CW12</p>
-      </a>
-      <a href="Puzzles/CW13.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW13_icon.png" alt="CW13 icon">
-        </div>
-        <p>CW13</p>
-      </a>
-      <a href="Puzzles/CW14.html" class="card">
-        <div class="icon-wrapper">
-          <img src="Icons/CW14_icon.png" alt="CW14 icon">
-        </div>
-        <p>CW14</p>
-      </a>
+      <!-- Add other crossword puzzle links here -->
     </div> <!-- .grid -->
   </div> <!-- .container -->
 
@@ -215,7 +139,7 @@
 
       const ads = [
         "Ads/CW_TP.png",
-      "Ads/Rent_a_grandma.png"
+        "Ads/Rent_a_grandma.png"
       ];
 
       if (ads.length > 0) {
@@ -225,6 +149,10 @@
           <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
             <img src="${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
           </a>`;
+        
+        // Log the ad HTML to check if it's correctly generated
+        console.log(adHTML);
+
         document.getElementById('ad-slot').innerHTML = adHTML;
       } else {
         console.log('No ads found');
