@@ -135,45 +135,46 @@ with open(OUTPUT_FILE, "w") as f:
       </a>
 """)
 
-    f.write("""    </div> <!-- .grid -->
-
-""")
-
-    # If we have a valid ad, add the right-side ad HTML
-    if random_ad:
-        ad_path = f"{AD_FOLDER}/{random_ad}"
-        f.write(f"""    <div class="ad">
-      <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-        <img src="{ad_path}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
-      </a>
+        f.write("""    </div> <!-- .grid -->
+    <div class="ad" id="ad-slot">
+      <!-- Ad will be inserted here by JS -->
     </div>
-""")
-
-    f.write("""  </div> <!-- .container -->
+  </div> <!-- .container -->
 
   <!-- Floating button to pick random puzzle -->
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
   <script>
-  function pickRandomPuzzle() {
-    const puzzles = document.querySelectorAll('.grid a.card');
-
-    if (puzzles.length === 0) {
-      console.log("No puzzles found!");
-      alert("No puzzles found!");
-      return;
+    function pickRandomPuzzle() {
+      const puzzles = document.querySelectorAll('.grid a.card');
+      if (puzzles.length === 0) {
+        alert("No puzzles found!");
+        return;
+      }
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      window.location.href = randomPuzzle.getAttribute('href');
     }
 
-    const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-    const randomPuzzleUrl = randomPuzzle.getAttribute('href');
+    // Ad rotation logic
+""")
 
-    console.log("Redirecting to:", randomPuzzleUrl);
-    if (randomPuzzleUrl) {
-      window.location.href = randomPuzzleUrl;
-    } else {
-      alert("Invalid puzzle link!");
-    }
-  }
+    # Step 1: Get all ad images
+    ad_images = [f for f in os.listdir(AD_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+    js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
+
+    f.write(f"""
+    const ads = [
+      {js_ad_array}
+    ];
+
+    if (ads.length > 0) {{
+      const randomAd = ads[Math.floor(Math.random() * ads.length)];
+      const adHTML = `
+        <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
+          <img src="\${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+        </a>`;
+      document.getElementById('ad-slot').innerHTML = adHTML;
+    }}
   </script>
 </body>
 </html>
