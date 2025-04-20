@@ -218,24 +218,14 @@
     window.onload = function() {
       console.log('Page loaded');
 
-      const ads = [
-        "Ads/CW_TP.png",
-        "Ads/Rent_a_grandma.png"
-      ];
+      const adFile = "Ads/CW_TP.png";  // Specify the ad image file directly
 
-      if (ads.length > 0) {
-        console.log('Random ad selected');
-        const randomAd = ads[Math.floor(Math.random() * ads.length)];
-        const adHTML = `
-          <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
-            <img src="${randomAd}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
-          </a>`;
-        document.getElementById('ad-slot').innerHTML = adHTML;
-      } else {
-        console.log('No ads found');
-      }
+      const adHTML = `
+        <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
+          <img src="${adFile}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
+        </a>`;
+      document.getElementById('ad-slot').innerHTML = adHTML;
     };  // End of window.onload
   </script>
 </body>
 </html>
-
