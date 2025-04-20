@@ -148,40 +148,45 @@ with open(OUTPUT_FILE, "w") as f:
   </div>
 
   <script>
-    function pickRandomPuzzle() {
+    function pickRandomPuzzle() {{
       const puzzles = document.querySelectorAll('.grid a.card');
-      if (puzzles.length === 0) {
+      if (puzzles.length === 0) {{
         alert("No puzzles found!");
         return;
-      }
+      }}
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
       window.location.href = randomPuzzle.getAttribute('href');
-    }
+    }}
 
     window.onload = function() {{
+      console.log('Page loaded');
+      
       // Ad rotation logic
-
       const ads = [
 """)
 
     # Step 1: Get all ad images
     ad_images = [f for f in os.listdir(AD_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-    js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
-
-    f.write(f"""
+    
+    if ad_images:
+        js_ad_array = ",\n      ".join([f'"{AD_FOLDER}/{ad}"' for ad in ad_images])
+        f.write(f"""
       {js_ad_array}
     ];
 
 
     if (ads.length > 0) {{
+      console.log('Random ad selected');
       const randomAd = ads[Math.floor(Math.random() * ads.length)];
       const adHTML = `
         <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU&ab_channel=MusRest" target="_blank">
           <img src="${{randomAd}}" alt="Sponsored Ad" style="width:100%; border-radius:8px;">
         </a>`;
       document.getElementById('ad-slot').innerHTML = adHTML;
+    }} else {{
+      console.log('No ads found');
     }}
-    }};
+    }};  // End of window.onload function
   </script>
 </body>
 </html>
