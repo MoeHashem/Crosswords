@@ -118,6 +118,19 @@ with open(OUTPUT_FILE, "w") as f:
 
     f.write("""  </div>
 
+  <!-- Email signup form -->
+  <div style="max-width: 500px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <form action="https://formspree.io/f/xvgapvlk" method="POST">
+      <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+        Sign up for crossword updates:
+        <input type="email" name="email" required placeholder="you@example.com" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;" />
+      </label>
+      <button type="submit" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Subscribe
+      </button>
+    </form>
+  </div>
+
   <!-- Floating button to pick random puzzle -->
   <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
 
