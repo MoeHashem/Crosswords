@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>🧩 Crossword Puzzle HTML Generator</h1>
-
+  
   <label for="puzzleNum">Puzzle Number (e.g., CW3):</label>
   <input type="text" id="puzzleNum" placeholder="CW3">
 
@@ -52,6 +52,7 @@
       const iframeInput = document.getElementById("iframeSrc").value.trim();
 
       const fullTitle = `${puzzleNum} – ${title}`;
+
       const srcMatch = iframeInput.match(/src="([^"]+)"/);
       const iframeSrc = srcMatch ? srcMatch[1] : (iframeInput.startsWith("http") ? iframeInput : "");
 
@@ -125,14 +126,12 @@
     <a class="back-button" href="../index.html">← Home</a>
     <h1>${fullTitle}</h1>
   </header>
-
   <iframe 
     src="${iframeSrc}" 
     allow="web-share; fullscreen"
     aria-label="Puzzle Me Game">
   </iframe>
 
-  <!-- Email signup form -->
   <div class="signup-form-container">
     <form id="signup-form" action="https://formspree.io/f/xvgapvlk" method="POST" onsubmit="handleFormSubmit(event)">
       <label style="display: block; margin-bottom: 10px; font-weight: bold;">
