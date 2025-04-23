@@ -47,21 +47,21 @@
 
   <script>
     function generate() {
-      const puzzleNum = document.getElementById("puzzleNum").value.trim();
-      const title = document.getElementById("title").value.trim();
-      const iframeInput = document.getElementById("iframeSrc").value.trim();
+  const puzzleNum = document.getElementById("puzzleNum").value.trim();
+  const title = document.getElementById("title").value.trim();
+  const iframeInput = document.getElementById("iframeSrc").value.trim();
 
-      const fullTitle = `${puzzleNum} – ${title}`;
+  const fullTitle = `${puzzleNum} – ${title}`;
 
-      const srcMatch = iframeInput.match(/src="([^"]+)"/);
-      const iframeSrc = srcMatch ? srcMatch[1] : (iframeInput.startsWith("http") ? iframeInput : "");
+  const srcMatch = iframeInput.match(/src="([^"]+)"/);
+  const iframeSrc = srcMatch ? srcMatch[1] : (iframeInput.startsWith("http") ? iframeInput : "");
 
-      if (!iframeSrc) {
-        document.getElementById("output").textContent = "❌ Could not extract a valid iframe src URL.";
-        return;
-      }
+  if (!iframeSrc) {
+    document.getElementById("output").textContent = "❌ Could not extract a valid iframe src URL.";
+    return;
+  }
 
-      const html = `<!DOCTYPE html>
+  const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -142,7 +142,7 @@
         Subscribe
       </button>
       <div id="thank-you-message">
-        Thank you for signing up! You'll be notified about new crosswords.
+        Thank you for signing up! You&#39;ll be notified about new crosswords.
       </div>
     </form>
   </div>
@@ -161,8 +161,9 @@
 </body>
 </html>`;
 
-      document.getElementById("output").textContent = html;
-    }
+  document.getElementById("output").textContent = html;
+}
+
   </script>
 </body>
 </html>
