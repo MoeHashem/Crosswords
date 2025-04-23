@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>🧩 Crossword Puzzle HTML Generator</h1>
-  
+
   <label for="puzzleNum">Puzzle Number (e.g., CW3):</label>
   <input type="text" id="puzzleNum" placeholder="CW3">
 
@@ -47,21 +47,20 @@
 
   <script>
     function generate() {
-  const puzzleNum = document.getElementById("puzzleNum").value.trim();
-  const title = document.getElementById("title").value.trim();
-  const iframeInput = document.getElementById("iframeSrc").value.trim();
+      const puzzleNum = document.getElementById("puzzleNum").value.trim();
+      const title = document.getElementById("title").value.trim();
+      const iframeInput = document.getElementById("iframeSrc").value.trim();
 
-  const fullTitle = `${puzzleNum} – ${title}`;
+      const fullTitle = `${puzzleNum} – ${title}`;
+      const srcMatch = iframeInput.match(/src="([^"]+)"/);
+      const iframeSrc = srcMatch ? srcMatch[1] : (iframeInput.startsWith("http") ? iframeInput : "");
 
-  const srcMatch = iframeInput.match(/src="([^"]+)"/);
-  const iframeSrc = srcMatch ? srcMatch[1] : (iframeInput.startsWith("http") ? iframeInput : "");
+      if (!iframeSrc) {
+        document.getElementById("output").textContent = "❌ Could not extract a valid iframe src URL.";
+        return;
+      }
 
-  if (!iframeSrc) {
-    document.getElementById("output").textContent = "❌ Could not extract a valid iframe src URL.";
-    return;
-  }
-
-  const html = `<!DOCTYPE html>
+      const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -71,29 +70,8 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
       text-align: center;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      background-color: #f4f4f4;
-      padding: 10px;
-    }
-    .back-button {
-      text-decoration: none;
-      background-color: #ddd;
-      color: #333;
-      padding: 8px 12px;
-      border-radius: 5px;
-      font-size: 14px;
-      margin-right: auto;
-      margin-left: 10px;
-    }
-    h1 {
-      flex-grow: 1;
-      font-size: 1.5em;
-      margin: 0;
+      background: #f9f9f9;
     }
     iframe {
       border: none;
@@ -122,10 +100,8 @@
   </style>
 </head>
 <body>
-  <header>
-    <a class="back-button" href="../index.html">← Home</a>
-    <h1>${fullTitle}</h1>
-  </header>
+  <a href="../index.html" style="position: absolute; top: 10px; left: 10px; font-size: 1.2rem; text-decoration: none; background: #eee; padding: 8px 12px; border-radius: 4px; color: #333;">← Home</a>
+  <h1>${fullTitle}</h1>
   <iframe 
     src="${iframeSrc}" 
     allow="web-share; fullscreen"
@@ -142,7 +118,7 @@
         Subscribe
       </button>
       <div id="thank-you-message">
-        Thank you for signing up! You&#39;ll be notified about new crosswords.
+        Thank you for signing up! You'll be notified about new crosswords.
       </div>
     </form>
   </div>
@@ -157,13 +133,12 @@
       }, 10);
       document.getElementById('signup-form').reset();
     }
-  </script>
+  <\/script>
 </body>
 </html>`;
 
-  document.getElementById("output").textContent = html;
-}
-
+      document.getElementById("output").textContent = html;
+    }
   </script>
 </body>
 </html>
