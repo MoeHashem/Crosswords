@@ -1,3 +1,9 @@
+Ideas:
+- Difficulty rating system? Have users rate out of 5 or just mark it myself. If added, implement search.sort by difficulty on main page
+- User sign up for new uploads
+- A way to check how many times each puzzle has been solved?
+
+
 
 🧩 My Crossword Collection
 
