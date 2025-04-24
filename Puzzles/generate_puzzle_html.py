@@ -33,6 +33,7 @@ with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{full_title}</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
   <style>
     body {{
       font-family: Arial, sans-serif;
