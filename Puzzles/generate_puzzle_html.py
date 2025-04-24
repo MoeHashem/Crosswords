@@ -2,7 +2,7 @@ import csv
 import os
 import re
 
-CSV_FILE = "puzzle_data.csv"  # adjust if your file is named differently
+CSV_FILE = os.path.join("Puzzles", "puzzle_data.csv")  # adjust if your file is named differently
 OUTPUT_FOLDER = "Puzzles"
 
 # Make sure the output directory exists
