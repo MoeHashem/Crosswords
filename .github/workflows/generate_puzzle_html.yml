@@ -10,14 +10,39 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
+      # Step 1: Check out repository
       - name: Check out repository
         uses: actions/checkout@v2  # Checks out your code
 
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v2  # Sets up Python environment
         with:
           python-version: '3.9'  # Set Python version as per your project
 
+      # Step 3: Run the Python script to generate puzzle HTML
       - name: Run the Python script to generate puzzle HTML
         run: |
           python Puzzles/generate_puzzle_html.py  # Adjust path if necessary
+
+      # Step 4: Debugging: Check the current working directory and list files in 'Puzzles' folder
+      - name: Check working directory and files
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "List of files in Puzzles directory:"
+          ls -al Puzzles
+
+      # Step 5: Commit and push new HTML files if created
+      - name: Commit new puzzle HTML files
+        run: |
+          # Configure git user
+          git config --global user.name "Your GitHub Username"
+          git config --global user.email "youremail@example.com"
+          # Add new HTML files in the Puzzles directory
+          git add Puzzles/*.html
+          git commit -m "Add new puzzle HTML files"
+          git push
+        # This step will run only if there are changes to commit (i.e., new HTML files created)
+        # So, we need to prevent the workflow from failing if no changes are detected
+        continue-on-error: true
