@@ -4,7 +4,11 @@ on:
   push:
     paths:
       - 'Puzzles/**.html'
-      - '**_icon.PNG'
+      - '**_icon.PNG'  # Adjust if needed
+  workflow_run:
+    workflows: ["Generate Puzzle HTML"]  # This must match the name of the first workflow
+    types:
+      - completed  # Trigger when the first workflow is completed
 
 jobs:
   build:
