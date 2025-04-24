@@ -3,7 +3,7 @@ name: Generate Puzzle HTML
 on:
   push:
     paths:
-      - 'puzzle_data.csv'  # Trigger action when puzzle_data.csv changes
+      - 'Puzzles/puzzle_data.csv'  # Trigger action when puzzle_data.csv changes
 
 jobs:
   generate_html:
@@ -25,4 +25,4 @@ jobs:
 
       - name: Run the Python script to generate puzzle HTML
         run: |
-          python /Puzzles/generate_puzzle_html.py  # Adjust path if necessary
+          python Puzzles/generate_puzzle_html.py  # Adjust path if necessary
