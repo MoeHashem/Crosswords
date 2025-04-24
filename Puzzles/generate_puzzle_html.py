@@ -9,7 +9,7 @@ OUTPUT_FOLDER = "Puzzles"
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
-    reader = csv.reader(csvfile)
+    reader = csv.reader(csvfile, delimiter='|')
     for row in reader:
         puzzle_num, title, iframe_input, should_generate = row
 
