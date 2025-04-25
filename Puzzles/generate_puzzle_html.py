@@ -63,33 +63,33 @@ html_content = f"""<!DOCTYPE html>
   </div>
 
   <script>
-    document.getElementById('signup-form').addEventListener('submit', async function (event) {
+    document.getElementById('signup-form').addEventListener('submit', async function (event) {{
       event.preventDefault();
 
       const form = event.target;
       const data = new FormData(form);
       const thankYouMessage = document.getElementById('thank-you-message');
 
-      try {
-        const response = await fetch(form.action, {
+      try {{
+        const response = await fetch(form.action, {{
           method: form.method,
           body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+          headers: {{ 'Accept': 'application/json' }}
+        }});
 
-        if (response.ok) {
+        if (response.ok) {{
           thankYouMessage.style.display = 'block';
-          setTimeout(() => {
+          setTimeout(() => {{
             thankYouMessage.style.opacity = '1';
-          }, 10);
+          }}, 10);
           form.reset();
-        } else {
+        }} else {{
           alert('Oops! Something went wrong. Please try again.');
-        }
-      } catch (error) {
+        }}
+      }} catch (error) {{
         alert('Network error. Please try again later.');
-      }
-    });
+      }}
+    }});
   </script>
 </body>
 </html>
