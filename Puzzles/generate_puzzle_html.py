@@ -77,19 +77,49 @@ with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
   </iframe>
 
   <div class="signup-form-container">
-    <form id="signup-form" action="https://formspree.io/f/xvgapvlk" method="POST" onsubmit="handleFormSubmit(event)">
-      <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-        Notify me for new crosswords?
-        <input type="email" name="email" required placeholder="you@example.com" style="width: 90%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
-      </label>
-      <button type="submit" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
-        Subscribe
-      </button>
-      <div id="thank-you-message">
-        Thank you for signing up! You'll be notified about new crosswords.
-      </div>
-    </form>
-  </div>
+  <form id="signup-form" action="https://formspree.io/f/xvgapvlk" method="POST">
+    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+      Notify me for new crosswords?
+      <input type="email" name="email" required placeholder="you@example.com" style="width: 90%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
+    </label>
+    <button type="submit" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Subscribe
+    </button>
+    <div id="thank-you-message" style="display: none; margin-top: 20px; color: #28a745; font-weight: bold; opacity: 0; transition: opacity 0.4s ease;">
+      Thank you for signing up! You'll be notified about new crosswords.
+    </div>
+  </form>
+</div>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const data = new FormData(form);
+    const thankYouMessage = document.getElementById('thank-you-message');
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        thankYouMessage.style.display = 'block';
+        setTimeout(() => {
+          thankYouMessage.style.opacity = '1';
+        }, 10);
+        form.reset();
+      } else {
+        alert('Oops! Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      alert('Network error. Please try again later.');
+    }
+  });
+</script>
 
   <script>
     function handleFormSubmit(event) {{
