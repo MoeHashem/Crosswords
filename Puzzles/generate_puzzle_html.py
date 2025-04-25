@@ -1,10 +1,38 @@
-html_content = f"""<!DOCTYPE html>
+import csv
+import os
+import re
+
+CSV_FILE = os.path.join("Puzzles", "puzzle_data.csv")
+OUTPUT_FOLDER = "Puzzles"
+
+# Make sure the output directory exists
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
+    reader = csv.reader(csvfile, delimiter='|')
+    for row in reader:
+        puzzle_num, title, iframe_input, should_generate = row
+
+        if should_generate.strip().upper() != 'Y':
+            continue
+
+        match = re.search(r'src="([^"]+)"', iframe_input)
+        iframe_src = match.group(1) if match else (iframe_input if iframe_input.startswith("http") else "")
+
+        if not iframe_src:
+            print(f"Skipping {puzzle_num}: Invalid iframe input")
+            continue
+
+        full_title = f"{puzzle_num} – {title}"
+        filename = os.path.join(OUTPUT_FOLDER, f"{puzzle_num}.html")
+
+        html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{full_title}</title>
-  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="icon" href="../favicon.png" type="image/png" />
   <style>
     body {{
       font-family: Arial, sans-serif;
@@ -56,7 +84,7 @@ html_content = f"""<!DOCTYPE html>
       <button type="submit" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
         Subscribe
       </button>
-      <div id="thank-you-message" style="display: none; margin-top: 20px; color: #28a745; font-weight: bold; opacity: 0; transition: opacity 0.4s ease;">
+      <div id="thank-you-message">
         Thank you for signing up! You'll be notified about new crosswords.
       </div>
     </form>
@@ -94,3 +122,7 @@ html_content = f"""<!DOCTYPE html>
 </body>
 </html>
 """
+
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(html_content)
+            print(f"✅ Created {filename}")
