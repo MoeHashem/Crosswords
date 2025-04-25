@@ -121,7 +121,7 @@ with open(OUTPUT_FILE, "w") as f:
 
   <!-- Email signup form -->
 <div style="max-width: 500px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <form id="signup-form" action="https://formspree.io/f/xvgapvlk" method="POST" onsubmit="handleFormSubmit(event)">
+  <form id="signup-form" action="https://formspree.io/f/xvgapvlk" method="POST">
     <label style="display: block; margin-bottom: 10px; font-weight: bold;">
       Notify me for new crosswords?
       <input type="email" name="email" required placeholder="you@example.com" style="width: 90%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
@@ -134,6 +134,34 @@ with open(OUTPUT_FILE, "w") as f:
     </div>
   </form>
 </div>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Stop default form submission
+
+    const form = event.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        document.getElementById('thank-you-message').style.display = 'block';
+        form.reset();
+      } else {
+        alert('Oops! There was a problem submitting your form.');
+      }
+    } catch (error) {
+      alert('There was a network error. Please try again later.');
+    }
+  });
+</script>
 
 <script>
   function handleFormSubmit(event) {
