@@ -1,0 +1,27 @@
+
+                    <table style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 8px; overflow: hidden;" width="100%" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 30px;">
+                                    <div style="text-align: center;">
+                                        <h1 style="font-size: 28px; color: #222; margin: 0 0 15px 0;">It's Crossword Time!</h1>
+                                        <p style="font-size: 18px; margin: 10px 0 20px;">CW17 - Yankee, just dropped. Hop on and let me know how it goes!</p>
+                                        <div style="display: inline-block; background-color: #f5f5f5; padding: 16px; border-radius: 16px;">
+                                            <a href="https://moescrosswords.netlify.app/puzzles/cw17" target="_blank" rel="noopener" style="text-decoration: none;">
+                                                <img style="width: 200px; max-width: 100%; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" src="https://moescrosswords.netlify.app/Icons/cw17_icon.PNG" alt="CW17 Icon">
+                                            </a>
+                                            <p style="margin-top: 12px;">
+                                                <a href="https://moescrosswords.netlify.app/puzzles/cw17" style="font-size: 16px; color: #333; text-decoration: none; font-weight: bold;">CW17</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 30px; font-size: 12px;">This one is a proper NYT puzzle: 15x15, rotationally symmetric, no two letter words... It's a Yankee, hah, get it? ...get it?</p>
+                                    <p style="margin-top: 20px; font-size: 16px;">Happy solving,<br><strong>Moe</strong></p>
+                                    <p style="font-size: 12px; color: #777; text-align: center;">
+                                        New here? <a href="https://moescrosswords.netlify.app/#signup-form" style="color: #555;">Sign up to get future crosswords by email.</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
