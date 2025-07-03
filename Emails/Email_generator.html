@@ -1,123 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossword Email Template Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f7f7f7;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        input, textarea, button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #555;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .result {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        .result p {
-            margin: 10px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crossword Email Template Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .result {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .result p {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Generate Crossword Email Template</h2>
 
-    <div class="container">
-        <h2>Generate Crossword Email Template</h2>
-        <label for="puzzle_number">Puzzle Number (e.g., CW16):</label>
-        <input type="text" id="puzzle_number" placeholder="e.g., CW16" required>
+    <label for="puzzle_number">Puzzle Number (e.g., CW16):</label>
+    <input type="text" id="puzzle_number" placeholder="e.g., CW16" required>
 
-        <label for="puzzle_title">Puzzle Title (e.g., Peep):</label>
-        <input type="text" id="puzzle_title" placeholder="e.g., Peep" required>
+    <label for="puzzle_title">Puzzle Title (e.g., Peep):</label>
+    <input type="text" id="puzzle_title" placeholder="e.g., Peep" required>
 
-        <label for="notes">Notes (e.g., P.S. Don't solve this yet!):</label>
-        <textarea id="notes" rows="4" placeholder="Enter your notes here..." required></textarea>
+    <label for="notes">Notes (e.g., P.S. Don't solve this yet!):</label>
+    <textarea id="notes" rows="3" placeholder="Enter your notes here..." required></textarea>
 
-        <button onclick="generateTemplate()">Generate Email</button>
+    <h3>Leaderboard (optional)</h3>
 
-        <div id="result" class="result" style="display: none;">
-            <h3>Generated Email Template:</h3>
-            <div id="generated_template"></div>
-            <textarea id="html_code" rows="10" readonly></textarea>
-        </div>
+    <label>1st Place Name:</label>
+    <input type="text" id="name1" placeholder="e.g., Alex">
+    <label>1st Place Time:</label>
+    <input type="text" id="time1" placeholder="e.g., 2m 15s">
+
+    <label>2nd Place Name:</label>
+    <input type="text" id="name2" placeholder="e.g., Sam">
+    <label>2nd Place Time:</label>
+    <input type="text" id="time2" placeholder="e.g., 2m 58s">
+
+    <label>3rd Place Name:</label>
+    <input type="text" id="name3" placeholder="e.g., Jamie">
+    <label>3rd Place Time:</label>
+    <input type="text" id="time3" placeholder="e.g., 3m 10s">
+
+    <button onclick="generateTemplate()">Generate Email</button>
+
+    <div id="result" class="result" style="display: none;">
+      <h3>Generated Email Template:</h3>
+      <div id="generated_template"></div>
+      <textarea id="html_code" rows="12" readonly></textarea>
     </div>
+  </div>
 
-    <script>
-        function generateTemplate() {
-            const puzzleNumber = document.getElementById('puzzle_number').value.trim();
-            const puzzleTitle = document.getElementById('puzzle_title').value.trim();
-            const notes = document.getElementById('notes').value.trim();
+  <script>
+    function generateTemplate() {
+      const puzzleNumber = document.getElementById('puzzle_number').value.trim();
+      const puzzleTitle = document.getElementById('puzzle_title').value.trim();
+      const notes = document.getElementById('notes').value.trim();
 
-            if (puzzleNumber && puzzleTitle && notes) {
-                const puzzleUrl = `https://moescrosswords.netlify.app/puzzles/${puzzleNumber.toLowerCase()}`;
-                const iconUrl = `https://moescrosswords.netlify.app/Icons/${puzzleNumber.toLowerCase()}_icon.PNG`;
+      const name1 = document.getElementById('name1').value.trim();
+      const time1 = document.getElementById('time1').value.trim();
+      const name2 = document.getElementById('name2').value.trim();
+      const time2 = document.getElementById('time2').value.trim();
+      const name3 = document.getElementById('name3').value.trim();
+      const time3 = document.getElementById('time3').value.trim();
 
-                // Construct the email HTML
-                const emailHtml = `
-                    <table style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 8px; overflow: hidden;" width="100%" cellspacing="0" cellpadding="0">
-                        <tbody>
-                            <tr>
-                                <td style="padding: 30px;">
-                                    <div style="text-align: center;">
-                                        <h1 style="font-size: 28px; color: #222; margin: 0 0 15px 0;">It's Crossword Time!</h1>
-                                        <p style="font-size: 18px; margin: 10px 0 20px;">${puzzleNumber} - ${puzzleTitle}, just dropped. Hop on and let me know if you finish it!</p>
-                                        <div style="display: inline-block; background-color: #f5f5f5; padding: 16px; border-radius: 16px;">
-                                            <a href="${puzzleUrl}" target="_blank" rel="noopener" style="text-decoration: none;">
-                                                <img style="width: 200px; max-width: 100%; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" src="${iconUrl}" alt="${puzzleNumber} Icon">
-                                            </a>
-                                            <p style="margin-top: 12px;">
-                                                <a href="${puzzleUrl}" style="font-size: 16px; color: #333; text-decoration: none; font-weight: bold;">${puzzleNumber}</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p style="margin-top: 30px; font-size: 12px;">${notes}</p>
-                                    <p style="margin-top: 20px; font-size: 16px;">Happy solving,<br><strong>Moe</strong></p>
-                                    <p style="font-size: 12px; color: #777; text-align: center;">
-                                        New here? <a href="https://moescrosswords.netlify.app/#signup-form" style="color: #555;">Sign up to get future crosswords by email.</a>
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                `;
+      if (puzzleNumber && puzzleTitle && notes) {
+        const puzzleUrl = `https://moescrosswords.netlify.app/puzzles/${puzzleNumber.toLowerCase()}`;
+        const iconUrl = `https://moescrosswords.netlify.app/Icons/${puzzleNumber.toLowerCase()}_icon.PNG`;
 
-                // Show the generated template and HTML code
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('generated_template').innerHTML = emailHtml;
-                document.getElementById('html_code').textContent = emailHtml;
-            }
+        let leaderboardHtml = '';
+        if (name1 || name2 || name3) {
+          leaderboardHtml = `
+            <div style="margin-top: 30px;">
+              <h3 style="text-align: center; font-size: 18px; margin-bottom: 10px;">🏆 Leaderboard</h3>
+              <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+                <thead>
+                  <tr style="background-color: #eee;">
+                    <th style="padding: 8px;">Place</th>
+                    <th style="padding: 8px;">Name</th>
+                    <th style="padding: 8px;">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${name1 && time1 ? `<tr><td style="padding: 8px;">🥇 1st</td><td style="padding: 8px;">${name1}</td><td style="padding: 8px;">${time1}</td></tr>` : ''}
+                  ${name2 && time2 ? `<tr><td style="padding: 8px;">🥈 2nd</td><td style="padding: 8px;">${name2}</td><td style="padding: 8px;">${time2}</td></tr>` : ''}
+                  ${name3 && time3 ? `<tr><td style="padding: 8px;">🥉 3rd</td><td style="padding: 8px;">${name3}</td><td style="padding: 8px;">${time3}</td></tr>` : ''}
+                </tbody>
+              </table>
+            </div>
+          `;
         }
-    </script>
 
+        const emailHtml = `
+          <table style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 8px; overflow: hidden;" width="100%" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td style="padding: 30px;">
+                  <div style="text-align: center;">
+                    <h1 style="font-size: 28px; color: #222; margin: 0 0 15px 0;">It's Crossword Time!</h1>
+                    <p style="font-size: 18px; margin: 10px 0 20px;">${puzzleNumber} - ${puzzleTitle}, just dropped. Hop on and let me know if you finish it!</p>
+                    <div style="display: inline-block; background-color: #f5f5f5; padding: 16px; border-radius: 16px;">
+                      <a href="${puzzleUrl}" target="_blank" rel="noopener" style="text-decoration: none;">
+                        <img style="width: 200px; max-width: 100%; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" src="${iconUrl}" alt="${puzzleNumber} Icon">
+                      </a>
+                      <p style="margin-top: 12px;">
+                        <a href="${puzzleUrl}" style="font-size: 16px; color: #333; text-decoration: none; font-weight: bold;">${puzzleNumber}</a>
+                      </p>
+                    </div>
+                  </div>
+                  ${leaderboardHtml}
+                  <p style="margin-top: 30px; font-size: 12px;">${notes}</p>
+                  <p style="margin-top: 20px; font-size: 16px;">Happy solving,<br><strong>Moe</strong></p>
+                  <p style="font-size: 12px; color: #777; text-align: center;">
+                    New here? <a href="https://moescrosswords.netlify.app/#signup-form" style="color: #555;">Sign up to get future crosswords by email.</a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('generated_template').innerHTML = emailHtml;
+        document.getElementById('html_code').textContent = emailHtml;
+      }
+    }
+  </script>
 </body>
 </html>
