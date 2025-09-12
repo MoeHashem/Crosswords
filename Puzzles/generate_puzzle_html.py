@@ -81,7 +81,7 @@ with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
         Notify me for new crosswords?
         <input type="email" name="email" required placeholder="you@example.com" style="width: 90%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
       </label>
-      <button type="submit" style="padding: 10px 20px; background: #F7CD36; color: #bbb; border: none; border-radius: 4px; cursor: pointer;">
+      <button type="submit" style="padding: 10px 20px; background: #F7CD36; color: #333; border: none; border-radius: 4px; cursor: pointer;">
         Subscribe
       </button>
       <div id="thank-you-message">
