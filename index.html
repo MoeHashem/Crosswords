@@ -284,10 +284,28 @@
   }
 </script>
 
-  <!-- Floating button to pick random puzzle -->
-  <button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
+<!-- Floating button to pick random puzzle -->
+<style>
+  .floating-btn {
+    background-color: #F7CD36; /* yellow-gold */
+    color: #333; /* dark gray text */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
 
-  <script>
+  .floating-btn:hover {
+    background-color: #e6bb2f; /* slightly darker on hover */
+  }
+</style>
+
+<button class="floating-btn" onclick="pickRandomPuzzle()">Pick a Random Puzzle</button>
+
+<script>
   function pickRandomPuzzle() {
     const puzzles = document.querySelectorAll('.grid a.card');
 
@@ -308,6 +326,7 @@
     }
   }
 </script>
+
 
 </body>
 </html>
